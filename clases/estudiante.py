@@ -1,7 +1,7 @@
 from clases.persona import Persona
 
-class Estudiante (Persona):
-    def __init__ (self, nombre, edad, genero, grado):
+class Estudiante(Persona):
+    def __init__(self, nombre, edad, genero, grado):
         super().__init__(nombre, edad)
         self.grado = grado
         self.genero = genero

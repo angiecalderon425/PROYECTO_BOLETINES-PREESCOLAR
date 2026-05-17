@@ -22,7 +22,7 @@ class Boletin:
 
         for area in self.areas:
             print(f"{area.get_nombre_area():<20}"
-                  f"{area.get_observacion():<60}"
+                  f"{area.get_observacion()[:55]:<60}"
                   f"{area.obtener_desempeño():<20}")
 
         print("="*70)

@@ -2,35 +2,34 @@ from clases.estudiante import Estudiante
 from clases.area import Area
 from clases.boletin import Boletin
 from clases.acudiente import Acudiente
+from clases.excepciones import NotaInvalidaError
 
 estudiante1 = Estudiante("Emmanuel Alvarez Jerez", 5, "Masculino", "Transición-5")
+
 area1 = Area("Cognitiva")
-area1.agregar_rubrica(4)
-area1.agregar_rubrica(4)
-area1.agregar_rubrica(5)
-area1.agregar_rubrica(4)
-area1.agregar_rubrica(5)
+notas = [4,4,5,4,5]
+
+for nota in notas:
+    area1.agregar_rubrica(nota)
 
 area2 = Area("Comunicativa")
-area2.agregar_rubrica(5)
-area2.agregar_rubrica(4)
-area2.agregar_rubrica(4)
-area2.agregar_rubrica(5)
-area2.agregar_rubrica(4)
+notas = [5,4,4,5,4]
+
+for nota in notas:
+    area2.agregar_rubrica(nota)
 
 area3 = Area("Socio-afectiva")
-area3.agregar_rubrica(4)
-area3.agregar_rubrica(3)
-area3.agregar_rubrica(4)
-area3.agregar_rubrica(4)
-area3.agregar_rubrica(5)
+notas = [4,3,4,4,5]
+
+for nota in notas:
+    area3.agregar_rubrica(nota)
 
 area4 = Area("Motora")
-area4.agregar_rubrica(4)
-area4.agregar_rubrica(4)
-area4.agregar_rubrica(3)
-area4.agregar_rubrica(5)
-area4.agregar_rubrica(3)
+notas = [4,4,3,5,3]
+
+for nota in notas:
+    area4.agregar_rubrica(nota)
+
 
 boletin1 = Boletin(estudiante1, "Primer Periodo")
 boletin1.agregar_area(area1)
@@ -38,7 +37,7 @@ boletin1.agregar_area(area2)
 boletin1.agregar_area(area3)
 boletin1.agregar_area(area4)
 
-print(boletin1.mostrar_boletin())
+boletin1.mostrar_boletin()
 
 print("""
 ====================================
@@ -95,13 +94,17 @@ while True:
                   nueva_area = Area(nombre_area)
 
                   for j in range(5):
-                    nota = float(input(f"Ingrese la nota {j+1} para el área {nombre_area}: "))
-                    
-                    while nota < 0 or nota > 5:
-                        print("Nota inválida, por favor ingrese una nota entre 0 y 5.")
-                        nota = float(input(f"Ingrese nuevamente la nota {j+1}: "))
-                    
-                    nueva_area.agregar_rubrica(nota)
+                    while True:
+                      try:
+                         nota = float(input(f"Ingrese la nota {j+1} para el área {nombre_area}: "))
+                         
+                         if nota < 0 or nota > 5:
+                            raise NotaInvalidaError()
+                         
+                         nueva_area.agregar_rubrica(nota)
+                         break
+                      except NotaInvalidaError as e:
+                          print(e)
 
                   observacion = input(f"Ingrese una observación para el área {nombre_area}: ")
                   nueva_area.set_observacion(observacion)

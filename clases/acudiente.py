@@ -1,7 +1,7 @@
 from clases.persona import Persona
 
-class Acudiente (Persona):
-    def __init__ (self, nombre, edad, celular, parentesco):
+class Acudiente(Persona):
+    def __init__(self, nombre, edad, celular, parentesco):
         super().__init__(nombre, edad)
         self.__celular = celular
         self.parentesco = parentesco

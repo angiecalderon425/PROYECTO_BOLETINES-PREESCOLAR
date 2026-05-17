@@ -1,6 +1,6 @@
 class Area:
-    def __init__ (self, area):
-        self.__nombre_area = area
+    def __init__ (self, nombre_area):
+        self.__nombre_area = nombre_area
         self.__rubrica = []
         self.__observacion = ""
     
